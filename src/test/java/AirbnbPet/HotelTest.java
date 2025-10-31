@@ -13,8 +13,17 @@ class HotelTest {
         Dog casePet = new Dog();
 
         Hotel hotel = new Hotel();
-        boolean output = hotel.registerPet(casePet);
-        assertTrue(output);
+        assertTrue(hotel.registerPet(casePet));
+        assertTrue(hotel.isPetRegistered(casePet));
+    }
+
+    @Test
+    public void shouldNotRegisterPetWithoutId() {
+        Dog casePet = new Dog();
+
+        Hotel hotel = new Hotel();
+        assertFalse(hotel.registerPet(casePet));
+        assertFalse(hotel.isPetRegistered(casePet));
     }
 
     @Test
@@ -25,8 +34,6 @@ class HotelTest {
 
         Hotel hotel = new Hotel();
         hotel.registerPet(caseFirstPet);
-        boolean output = hotel.registerPet(casePetWithDuplicatedId);
-
-        assertFalse(output);
+        assertFalse(hotel.registerPet(casePetWithDuplicatedId));
     }
 }
