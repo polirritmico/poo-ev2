@@ -15,23 +15,46 @@ public class Hotel {
     }
 
     private List<String> validate(Pet visitor) {
-        List<String> output = new ArrayList<String>();
+        List<String> output = new ArrayList<>();
+
+        if (!hasValidId(visitor.getId())) {
+            String msg = "invalid id: '" + visitor.getId() + "'";
+            output.add(msg);
+        }
+
         return output;
     }
 
+    private boolean hasValidId(String id) {
+        if (id == null || id.isBlank()) {
+            return false;
+        }
+        return true;
+    }
+
     private void showErrorMessages(List<String> messages) {
+        System.out.println("Errors found:");
+        for (String err : messages) {
+            System.out.println("- " + err);
+        }
     }
 
     private void checkInGuest(Pet guest) {
+        guests.put(guest.getId(), guest);
     }
 
     public boolean registerPet(Pet incomingGuest) {
         List<String> validationResults = validate(incomingGuest);
         if (!validationResults.isEmpty()) {
             showErrorMessages(validationResults);
+            return false;
         }
 
         checkInGuest(incomingGuest);
         return true;
+    }
+
+    public boolean isPetRegistered(Pet checkGuest) {
+        return guests.containsKey(checkGuest.getId());
     }
 }
