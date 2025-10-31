@@ -1,12 +1,15 @@
 package AirbnbPet.Pets;
 
+import AirbnbPet.AccommodationFees;
+
 import java.util.List;
+
 
 /**
  * Abstract Pet class.
  * Each pet species admitted into AirbnbPet must inherit from this class.
  */
-public abstract class Pet {
+public abstract class Pet implements AccommodationFees {
     protected String id;
     protected String name;
     protected double weightKg;
@@ -29,6 +32,8 @@ public abstract class Pet {
      * Generate a list of strings with all the pet meaningful data.
      */
     public abstract List<String> getData();
+
+    public abstract int calculateValue(int days);
 
     // -------------------------------------------------------------------------
 

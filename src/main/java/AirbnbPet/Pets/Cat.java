@@ -19,4 +19,9 @@ public class Cat extends Pet {
         List<String> res = new ArrayList<>();
         return res;
     }
+
+    @Override
+    public int calculateValue(int days) {
+        return 0;
+    }
 }
