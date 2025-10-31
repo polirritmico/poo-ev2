@@ -1,6 +1,8 @@
 package AirbnbPet.Pets;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Dog extends Pet {
     private int dailyExerciseSessions = 0;
@@ -50,7 +52,8 @@ public class Dog extends Pet {
     public int getDailyExerciseSessions() {return dailyExerciseSessions;}
 
     @Override
-    public String getData() {
-        return "";
+    public List<String> getData() {
+        List<String> res = new ArrayList<>();
+        return res;
     }
 }

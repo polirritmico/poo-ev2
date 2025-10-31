@@ -1,5 +1,8 @@
 package AirbnbPet.Pets;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Cat extends Pet {
     // defined by a pedigree
     private String pedigree;
@@ -25,7 +28,8 @@ public class Cat extends Pet {
     }
 
     @Override
-    public String getData() {
-        return "";
+    public List<String> getData() {
+        List<String> res = new ArrayList<>();
+        return res;
     }
 }

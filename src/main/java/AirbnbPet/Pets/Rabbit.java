@@ -1,5 +1,8 @@
 package AirbnbPet.Pets;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Rabbit extends Pet {
     // identify by eaten food
     private String foodType;
@@ -29,7 +32,8 @@ public class Rabbit extends Pet {
     public void setFoodType(String foodType) {this.foodType = foodType;}
 
     @Override
-    public String getData() {
-        return "";
+    public List<String> getData() {
+        List<String> res = new ArrayList<>();
+        return res;
     }
 }
