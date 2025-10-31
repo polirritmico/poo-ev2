@@ -11,14 +11,7 @@ public class Dog extends Pet {
     public Dog() {}
 
     public Dog(String id, String name, double weightKg, int ageYears, int ageMonths, boolean requiresNightSupervision, int dailyExerciseSessions) {
-        super(
-            id,
-            name,
-            weightKg,
-            ageYears,
-            ageMonths,
-            requiresNightSupervision
-        );
+        super(id, name, weightKg, ageYears, ageMonths, requiresNightSupervision);
         this.dailyExerciseSessions = dailyExerciseSessions;
     }
 

@@ -16,14 +16,7 @@ public abstract class Pet {
 
     public Pet() {}
 
-    public Pet(
-        String id,
-        String name,
-        double weightKg,
-        int ageYears,
-        int ageMonths,
-        boolean requiresNightSupervision
-    ) {
+    public Pet(String id, String name, double weightKg, int ageYears, int ageMonths, boolean requiresNightSupervision) {
         this.id = id;
         this.name = name;
         this.weightKg = weightKg;

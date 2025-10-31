@@ -9,23 +9,8 @@ public class Cat extends Pet {
 
     public Cat() {}
 
-    public Cat(
-        String id,
-        String name,
-        double weightKg,
-        int ageYears,
-        int ageMonths,
-        boolean requiresNightSupervision,
-        String pedigree
-    ) {
-        super(
-            id,
-            name,
-            weightKg,
-            ageYears,
-            ageMonths,
-            requiresNightSupervision
-        );
+    public Cat(String id, String name, double weightKg, int ageYears, int ageMonths, boolean requiresNightSupervision, String pedigree) {
+        super(id, name, weightKg, ageYears, ageMonths, requiresNightSupervision);
         this.pedigree = pedigree;
     }
 

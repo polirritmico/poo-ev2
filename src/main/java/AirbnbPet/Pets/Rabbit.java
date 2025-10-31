@@ -9,21 +9,8 @@ public class Rabbit extends Pet {
 
     public Rabbit() {}
 
-    public Rabbit(
-        String id,
-        boolean requiresNightSupervision,
-        String name,
-        double weightKg,
-        int ageYears,
-        int ageMonths,
-        String foodType
-    ) {
-        super.id = id;
-        super.requiresNightSupervision = requiresNightSupervision;
-        super.name = name;
-        super.weightKg = weightKg;
-        super.ageYears = ageYears;
-        super.ageMonths = ageMonths;
+    public Rabbit(String id, String name, double weightKg, int ageYears, int ageMonths, boolean requiresNightSupervision, String foodType) {
+        super(id, name, weightKg, ageYears, ageMonths, requiresNightSupervision);
         this.foodType = foodType;
     }
 
