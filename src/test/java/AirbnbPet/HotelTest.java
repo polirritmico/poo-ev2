@@ -1,14 +1,10 @@
 package AirbnbPet;
 
 import AirbnbPet.Pets.Dog;
-
-import static AirbnbPet.Mocks.*;
-
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static AirbnbPet.Mocks.newMockDog;
+import static org.junit.jupiter.api.Assertions.*;
 
 class HotelTest {
     @Test
@@ -51,5 +47,16 @@ class HotelTest {
 
         assertEquals(caseFirstPet.getId(), casePetWithDuplicatedId.getId());
         assertFalse(hotel.registerPet(casePetWithDuplicatedId));
+    }
+
+    @Test
+    public void shouldCalculateDogFee() {
+        Dog casePet = newMockDog();
+        for (int i = 0; i < 3; i++)
+            casePet.registerNewExerciseSession();
+        int expectedFee = 26_750;
+
+        int outputFee = casePet.calculateValue(1);
+        assertEquals(expectedFee, outputFee);
     }
 }
