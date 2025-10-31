@@ -1,11 +1,12 @@
 package AirbnbPet.Pets;
 
-public class Dog extends Pet {
-    private int dailyExerciseSessions;
+import java.time.LocalDate;
 
-    public Dog() {
-        dailyExerciseSessions = 0;
-    }
+public class Dog extends Pet {
+    private int dailyExerciseSessions = 0;
+    private LocalDate lastExerciseDate;
+
+    public Dog() {}
 
     public Dog(
         String id,
@@ -24,6 +25,29 @@ public class Dog extends Pet {
         super.ageMonths = ageMonths;
         this.dailyExerciseSessions = dailyExerciseSessions;
     }
+
+    private void resetExerciseRegistry(LocalDate today) {
+        lastExerciseDate = today;
+        dailyExerciseSessions = 0;
+    }
+
+    public int registerNewExerciseSession(LocalDate today) {
+        if (lastExerciseDate == null || lastExerciseDate.isBefore(today)) {
+            resetExerciseRegistry(today);
+        }
+        dailyExerciseSessions += 1;
+
+        System.out.println(
+            "[Exercising Dog] "
+                + "Date: " + today
+                + " | Session #: " + dailyExerciseSessions
+                + " | Name: " + name
+                + " | Id: " + id
+        );
+        return dailyExerciseSessions;
+    }
+
+    public int getDailyExerciseSessions() {return dailyExerciseSessions;}
 
     @Override
     public String getData() {
