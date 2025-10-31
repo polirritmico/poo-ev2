@@ -1,13 +1,13 @@
 package AirbnbPet;
 
 import AirbnbPet.Pets.Dog;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
-
 import static AirbnbPet.Mocks.newMockDog;
+import static AirbnbPet.helpers.substringInCollection;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -89,13 +89,4 @@ class DogTest {
         assertTrue(substringInCollection(expectedSupervision, output));
     }
 
-    private boolean substringInCollection(String substr, List<String> collection) {
-        substr = substr.toLowerCase();
-        for (String str : collection) {
-            str = str.toLowerCase();
-            if (str.contains(substr.toLowerCase()))
-                return true;
-        }
-        return false;
-    }
 }
