@@ -17,19 +17,28 @@ public class Hotel {
     private List<String> validate(Pet visitor) {
         List<String> output = new ArrayList<>();
 
-        if (!hasValidId(visitor.getId())) {
-            String msg = "invalid id: '" + visitor.getId() + "'";
+        if (!hasValidId(visitor)) {
+            String msg = "Invalid id: '" + visitor.getId() + "'";
+            output.add(msg);
+        } else if (isPetRegister(visitor)) {
+            String msg = "Duplicated id: '" + visitor.getId() + "'";
             output.add(msg);
         }
 
         return output;
     }
 
-    private boolean hasValidId(String id) {
-        if (id == null || id.isBlank()) {
+    private boolean hasValidId(Pet pet) {
+        if (pet.getId() == null)
             return false;
-        }
+        else if (pet.getId().isBlank())
+            return false;
+
         return true;
+    }
+
+    boolean isPetRegister(Pet checkGuest) {
+        return guests.containsKey(checkGuest.getId());
     }
 
     private void showErrorMessages(List<String> messages) {
@@ -52,9 +61,5 @@ public class Hotel {
 
         checkInGuest(incomingGuest);
         return true;
-    }
-
-    public boolean isPetRegistered(Pet checkGuest) {
-        return guests.containsKey(checkGuest.getId());
     }
 }
