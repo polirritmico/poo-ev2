@@ -1,4 +1,4 @@
-package Pets;
+package AirbnbPet.Pets;
 
 /**
  * Abstract Pet class.
