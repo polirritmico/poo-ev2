@@ -8,9 +8,22 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class HotelTest {
+    private Dog newMockDog() {
+        return new Dog(
+            "mockId-123",
+            true,
+            "Mock Dog",
+            6,
+            5,
+            5,
+            3
+        );
+    }
+
+
     @Test
     public void shouldRegisterIncomingPets() {
-        Dog casePet = new Dog();
+        Dog casePet = newMockDog();
 
         Hotel hotel = new Hotel();
         assertTrue(hotel.registerPet(casePet));
