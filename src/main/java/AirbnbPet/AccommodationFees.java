@@ -15,5 +15,5 @@ public interface AccommodationFees {
         "Rabbit", -7
     );
 
-    int calculateValue(String petType, int days);
+    int calculateValue(int days);
 }

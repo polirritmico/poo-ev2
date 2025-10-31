@@ -20,6 +20,10 @@ public class Dog extends Pet {
         dailyExerciseSessions = 0;
     }
 
+    public int registerNewExerciseSession() {
+        return registerNewExerciseSession(LocalDate.now());
+    }
+
     public int registerNewExerciseSession(LocalDate today) {
         if (lastExerciseDate == null || lastExerciseDate.isBefore(today)) {
             resetExerciseRegistry(today);
@@ -49,5 +53,12 @@ public class Dog extends Pet {
         res.add("Exercise sessions today:\t" + getDailyExerciseSessions());
         res.add("Requires night supervision:\t" + requiresNightSupervision());
         return res;
+    }
+
+    @Override
+    public int calculateValue(int days) {
+        double percentage = percentageIncreaseFeesByPetType.get("Dog") / 100.0;
+        double fee = VALOR_DIA_ALOJAMIENTO * Math.pow(1 + percentage, days);
+        return (int) fee;
     }
 }
