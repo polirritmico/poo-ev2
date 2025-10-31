@@ -1,27 +1,17 @@
 package AirbnbPet;
 
 import AirbnbPet.Pets.Dog;
-import org.junit.jupiter.api.Test;
-
+import AirbnbPet.Mocks.*;
 
 import java.time.LocalDate;
 
+import org.junit.jupiter.api.Test;
+
+import static AirbnbPet.Mocks.newMockDog;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class DogTest {
-    private Dog newMockDog() {
-        return new Dog(
-            "mockId-123",
-            true,
-            "Mock Dog",
-            6,
-            5,
-            5,
-            0
-        );
-    }
-
     @Test
     void shouldSetAndGetPassedDogId() {
         String caseValue = "asdf1234";
@@ -35,15 +25,19 @@ class DogTest {
     }
 
     @Test
-    void shouldRegisterExerciseSessions() {
-        Dog dog = newMockDog();
-        int expected = 2;
-        LocalDate today = LocalDate.now();
-        assertEquals(0, dog.getDailyExerciseSessions());
+    void shouldRegisterAllExerciseSessions() {
+        int expectedInitialExerciseSessions = 0;
+        int expectedEndingExerciseSessions = 4;
 
-        dog.registerNewExerciseSession(today);
-        int output = dog.registerNewExerciseSession(today);
-        assertEquals(expected, output);
+        Dog dog = newMockDog();
+        LocalDate today = LocalDate.now();
+        int outputInitialExerciseSessions = dog.getDailyExerciseSessions();
+        for (int i = 0; i < 3; i++)
+            dog.registerNewExerciseSession(today);
+        int outputEndingExerciseSessions = dog.registerNewExerciseSession(today);
+
+        assertEquals(expectedInitialExerciseSessions, outputInitialExerciseSessions);
+        assertEquals(expectedEndingExerciseSessions, outputEndingExerciseSessions);
     }
 
     @Test
