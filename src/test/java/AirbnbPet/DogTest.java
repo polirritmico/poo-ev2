@@ -1,9 +1,9 @@
 package AirbnbPet;
 
 import AirbnbPet.Pets.Dog;
-import AirbnbPet.Mocks.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -58,5 +58,41 @@ class DogTest {
         assertEquals(expectedStartingSessions, outputStartingSessions);
         assertEquals(expectedYesterdaySessions, outputYesterdaySessions);
         assertEquals(expectedTodaySessions, outputTodaySessions);
+    }
+
+    @Test
+    void shouldGenerateAllMeaningfulPetData() {
+        Dog casePet = new Dog(
+            "mockdog-987",
+            true,
+            "MockReDog",
+            4.2,
+            7,
+            3,
+            0
+        );
+        String expectedId = "mockdog-987";
+        String expectedName = "mockredog";
+        String expectedWeight = "4.2 kg";
+        String expectedYears = "7 years";
+        String expectedMonths = "3 months";
+        String expectedExerciseSessions = "exercise";
+        String expectedSupervision = "requires supervision";
+
+        List<String> output = casePet.getData();
+        assertTrue(substringInCollection("mockdog-987", output));
+        assertTrue(substringInCollection("mockredog", output));
+        assertTrue(substringInCollection("4.2 kg", output));
+        assertTrue(substringInCollection("7 years", output));
+        assertTrue(substringInCollection("3 months", output));
+        assertTrue(substringInCollection("exercise", output));
+        assertTrue(substringInCollection("requires supervision", output));
+    }
+
+    private boolean substringInCollection(String substr, List<String> collection) {
+        for (String str : collection)
+            if (str.contains(substr))
+                return true;
+        return false;
     }
 }
