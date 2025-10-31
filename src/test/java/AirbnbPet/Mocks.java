@@ -11,11 +11,11 @@ public class Mocks {
         String name = "Mock Dog " + (++dogCounter);
         return new Dog(
             id,
-            true,
             name,
             6,
             5,
             5,
+            true,
             0
         );
     }

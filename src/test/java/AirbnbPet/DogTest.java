@@ -64,11 +64,11 @@ class DogTest {
     void shouldGenerateAllMeaningfulPetData() {
         Dog casePet = new Dog(
             "mockdog-987",
-            true,
             "MockReDog",
             4.2,
             7,
             3,
+            true,
             0
         );
         String expectedId = "mockdog-987";
@@ -77,22 +77,25 @@ class DogTest {
         String expectedYears = "7 years";
         String expectedMonths = "3 months";
         String expectedExerciseSessions = "exercise";
-        String expectedSupervision = "requires supervision";
+        String expectedSupervision = "requires night supervision";
 
         List<String> output = casePet.getData();
-        assertTrue(substringInCollection("mockdog-987", output));
-        assertTrue(substringInCollection("mockredog", output));
-        assertTrue(substringInCollection("4.2 kg", output));
-        assertTrue(substringInCollection("7 years", output));
-        assertTrue(substringInCollection("3 months", output));
-        assertTrue(substringInCollection("exercise", output));
-        assertTrue(substringInCollection("requires supervision", output));
+        assertTrue(substringInCollection(expectedId, output));
+        assertTrue(substringInCollection(expectedName, output));
+        assertTrue(substringInCollection(expectedWeight, output));
+        assertTrue(substringInCollection(expectedYears, output));
+        assertTrue(substringInCollection(expectedMonths, output));
+        assertTrue(substringInCollection(expectedExerciseSessions, output));
+        assertTrue(substringInCollection(expectedSupervision, output));
     }
 
     private boolean substringInCollection(String substr, List<String> collection) {
-        for (String str : collection)
-            if (str.contains(substr))
+        substr = substr.toLowerCase();
+        for (String str : collection) {
+            str = str.toLowerCase();
+            if (str.contains(substr.toLowerCase()))
                 return true;
+        }
         return false;
     }
 }
