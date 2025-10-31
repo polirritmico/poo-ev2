@@ -10,10 +10,6 @@ import java.util.Map;
 public class Hotel {
     private Map<String, Pet> guests = new HashMap<>();
 
-    private boolean isPetCodeAlreadyRegister(String checkCode) {
-        return false;
-    }
-
     private List<String> validate(Pet visitor) {
         List<String> output = new ArrayList<>();
 
@@ -38,7 +34,15 @@ public class Hotel {
     }
 
     boolean isPetRegister(Pet checkGuest) {
-        return guests.containsKey(checkGuest.getId());
+        String guestId = checkGuest.getId();
+
+        for (String currentId : guests.keySet()) {
+            if (guestId.equals(currentId)) return true;
+
+            Pet currentPet = guests.get(guestId);
+            if (checkGuest == currentPet) return true;
+        }
+        return false;
     }
 
     private void showErrorMessages(List<String> messages) {
