@@ -18,6 +18,8 @@ Los perros se caracterizan por salir hacer ejercicio durante el día. En cambio,
 los gatos se definen por medio de un pedigrí y los conejos se identifican con
 tipo de comida que ingieran (dieta).
 
+---
+
 El desarrollo de la aplicación debe responder a los siguientes requerimientos:
 
 - Cada mascota debe identificarse con un código alfanumérico único.
