@@ -8,7 +8,7 @@ public class Cat extends Pet {
 
     public Cat(
         String id,
-        Boolean requiresNightSupervision,
+        boolean requiresNightSupervision,
         String name,
         double weightKg,
         int ageYears,

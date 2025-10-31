@@ -13,7 +13,7 @@ class HotelTest {
         Dog casePet = new Dog();
 
         Hotel hotel = new Hotel();
-        Boolean output = hotel.registerPet(casePet);
+        boolean output = hotel.registerPet(casePet);
         assertTrue(output);
     }
 
@@ -25,7 +25,7 @@ class HotelTest {
 
         Hotel hotel = new Hotel();
         hotel.registerPet(caseFirstPet);
-        Boolean output = hotel.registerPet(casePetWithDuplicatedId);
+        boolean output = hotel.registerPet(casePetWithDuplicatedId);
 
         assertFalse(output);
     }

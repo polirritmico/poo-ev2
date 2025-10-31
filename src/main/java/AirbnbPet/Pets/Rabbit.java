@@ -7,7 +7,7 @@ public class Rabbit extends Pet {
 
     public Rabbit(
         String id,
-        Boolean requiresNightSupervision,
+        boolean requiresNightSupervision,
         String name,
         double weightKg,
         int ageYears,

@@ -6,7 +6,7 @@ package AirbnbPet.Pets;
  */
 public abstract class Pet {
     protected String id;
-    protected Boolean requiresNightSupervision;
+    protected boolean requiresNightSupervision;
 
     protected String name;
     protected double weightKg;
@@ -22,9 +22,9 @@ public abstract class Pet {
 
     public void setId(String id) {this.id = id;}
 
-    public Boolean getRequiresNightSupervision() {return requiresNightSupervision;}
+    public boolean getRequiresNightSupervision() {return requiresNightSupervision;}
 
-    public void setRequiresNightSupervision(Boolean requiresNightSupervision) {
+    public void setRequiresNightSupervision(boolean requiresNightSupervision) {
         this.requiresNightSupervision = requiresNightSupervision;
     }
 

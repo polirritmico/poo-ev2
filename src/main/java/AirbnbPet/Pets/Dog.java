@@ -9,7 +9,7 @@ public class Dog extends Pet {
 
     public Dog(
         String id,
-        Boolean requiresNightSupervision,
+        boolean requiresNightSupervision,
         String name,
         double weightKg,
         int ageYears,

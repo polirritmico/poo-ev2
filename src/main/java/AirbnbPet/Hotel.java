@@ -10,7 +10,7 @@ import java.util.Map;
 public class Hotel {
     private Map<String, Pet> guests = new HashMap<>();
 
-    private Boolean isPetCodeAlreadyRegister(String checkCode) {
+    private boolean isPetCodeAlreadyRegister(String checkCode) {
         return false;
     }
 
