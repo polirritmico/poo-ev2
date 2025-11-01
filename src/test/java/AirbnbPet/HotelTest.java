@@ -52,6 +52,45 @@ class HotelTest {
     }
 
     @Test
+    public void shouldCorrectlyCountGuests() {
+        int expectedEmptyHotelGuestsCount = 0;
+        int expectedAfterGuestsCount = 20;
+
+        Hotel hotel = new Hotel();
+        int outputBefore = hotel.getGuestsCount();
+
+        for (int i = 0; i < 20; i++)
+            hotel.registerPet(newMockCat());
+        int outputAfter = hotel.getGuestsCount();
+
+        assertEquals(expectedEmptyHotelGuestsCount, outputBefore);
+        assertEquals(expectedAfterGuestsCount, outputAfter);
+    }
+
+    @Test
+    public void shouldCorrectlyUnregisterAGuest() {
+        int expectedBeforeCount = 3;
+        int expectedAfterCount = 0;
+
+        Cat cat = newMockCat();
+        Dog dog = newMockDog();
+        Rabbit rabbit = newMockRabbit();
+        Hotel hotel = new Hotel();
+        hotel.registerPet(cat);
+        hotel.registerPet(cat);
+        hotel.registerPet(dog);
+        hotel.registerPet(rabbit);
+        int outputBeforeCount = hotel.getGuestsCount();
+        hotel.unregisterPet(cat);
+        hotel.unregisterPet(dog);
+        hotel.unregisterPet(rabbit);
+        int outputAfterCount = hotel.getGuestsCount();
+
+        assertEquals(expectedBeforeCount, outputBeforeCount);
+        assertEquals(expectedAfterCount, outputAfterCount);
+    }
+
+    @Test
     public void rabbitNeighborsStateShouldRepresentCurrentHotelGuestsState() {
         Rabbit rabbit1 = newMockRabbit();
         Rabbit rabbit2 = newMockRabbit();
