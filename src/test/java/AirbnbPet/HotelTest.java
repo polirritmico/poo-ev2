@@ -89,7 +89,7 @@ class HotelTest {
     }
 
     @Test
-    public void rabbitFeeShouldNotBeFree() {
+    public void multipleRabbitsFeeShouldNotBeFree() {
         int caseDays = 200; // zero at >150
         Rabbit caseRabbit = newMockRabbit();
 

@@ -3,11 +3,10 @@ package AirbnbPet;
 import AirbnbPet.Pets.Rabbit;
 import org.junit.jupiter.api.Test;
 
-import static AirbnbPet.helpers.substringInCollection;
-
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static AirbnbPet.helpers.substringInCollection;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class RabbitTest {
     @Test
@@ -19,7 +18,8 @@ class RabbitTest {
             1,
             2,
             false,
-            "Carrots"
+            "Carrots",
+            false
         );
         String expectedId = "mockrabbit-42";
         String expectedName = "mock the rabbit";
