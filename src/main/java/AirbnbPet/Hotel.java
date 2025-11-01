@@ -140,11 +140,23 @@ public class Hotel {
 
     public List<String> getGuestsListString() {
         List<String> res = new ArrayList<>();
-        res.add("Total guests: " + getGuestsCount());
+        res.add(String.format("Lista de huéspedes (%d):", getGuestsCount()));
         int counter = 0;
         for (Pet guest : guests.values()) {
-            res.add((++counter) + ". " + guest.getName());
+            res.add(String.format(
+                "%d. %-10s(%s)", ++counter, guest.getName(), guest.getClass().getSimpleName()
+            ));
         }
         return res;
+    }
+
+    public int calculateAllGuestsFee(int days) {
+        if (guests.isEmpty()) return 0;
+
+        int totalFee = 0;
+        for (Pet pet : guests.values()) {
+            totalFee += pet.calculateValue(days);
+        }
+        return totalFee;
     }
 }

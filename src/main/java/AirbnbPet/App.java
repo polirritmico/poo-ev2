@@ -2,14 +2,13 @@ package AirbnbPet;
 
 import AirbnbPet.Pets.Cat;
 import AirbnbPet.Pets.Dog;
-import AirbnbPet.Pets.Pet;
 import AirbnbPet.Pets.Rabbit;
 
 import java.util.List;
 
 public class App {
     public void run() {
-        System.out.println("=== AirBnbPet ===\n");
+        System.out.println("==== AirBnbPet ====");
 
         Hotel hotel = new Hotel();
         hotel.registerPet(new Dog(
@@ -37,15 +36,11 @@ public class App {
         ));
 
         List<String> guestsList = hotel.getGuestsListString();
-        int totalFee = 0;
-        for (Pet pet : hotel.getGuests().values()) {
-            totalFee += pet.calculateValue(1);
-        }
-
+        int days = 1;
+        int totalFee = hotel.calculateAllGuestsFee(days);
         for (String line : guestsList)
             System.out.println(line);
-        System.out.println("Valor total por 1 día: " + totalFee);
-
-
+        System.out.println("--------------------------------");
+        System.out.printf("Valor total por %d día: $%,d\n", days, totalFee);
     }
 }
