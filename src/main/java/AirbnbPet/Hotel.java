@@ -144,7 +144,7 @@ public class Hotel {
         int counter = 0;
         for (Pet guest : guests.values()) {
             res.add(String.format(
-                "%d. %-10s(%s)", ++counter, guest.getName(), guest.getClass().getSimpleName()
+                "%d. %-15s(%s)", ++counter, guest.getName(), guest.getClass().getSimpleName()
             ));
         }
         return res;

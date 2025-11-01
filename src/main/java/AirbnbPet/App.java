@@ -18,7 +18,7 @@ public class App {
             "dog-002", "Lunita", 15.2, 2, 3, true, 3
         ));
         hotel.registerPet(new Dog(
-            "dog-003", "Sandro", 18.0, 4, 0, false, 1
+            "dog-003", "Cachupín", 18.0, 4, 0, false, 1
         ));
 
         hotel.registerPet(new Cat(
@@ -42,5 +42,8 @@ public class App {
             System.out.println(line);
         System.out.println("--------------------------------");
         System.out.printf("Valor total por %d día: $%,d\n", days, totalFee);
+
+        System.out.println("\nMostrar datos de un huésped:");
+        hotel.getGuests().get("dog-003").getData().forEach(System.out::println);
     }
 }

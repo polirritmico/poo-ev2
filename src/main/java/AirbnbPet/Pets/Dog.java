@@ -50,12 +50,12 @@ public class Dog extends Pet {
     public List<String> getData() {
         List<String> res = new ArrayList<>();
         res.add("[Dog Data]");
-        res.add("ID:\t" + getId());
-        res.add("Name:\t" + getName());
-        res.add("Weight:\t" + getWeightKg() + " kg");
-        res.add("Age:\t" + getAgeYears() + " years, " + getAgeMonths() + " months");
-        res.add("Exercise sessions today:\t" + getDailyExerciseSessions());
-        res.add("Requires night supervision:\t" + requiresNightSupervision());
+        res.add("ID: " + getId());
+        res.add("Name: " + getName());
+        res.add("Weight: " + getWeightKg() + " kg");
+        res.add("Age: " + getAgeYears() + " years, " + getAgeMonths() + " months");
+        res.add("Exercise sessions today: " + getDailyExerciseSessions());
+        res.add("Requires night supervision: " + requiresNightSupervision());
         return res;
     }
 
