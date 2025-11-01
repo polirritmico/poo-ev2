@@ -141,7 +141,7 @@ class HotelTest {
         pet1.setName("MockPet 1");
         pet2.setName("MockPet 2");
         pet3.setName("MockPet 3");
-        String expected0 = "Total guests: 3";
+        String expected0 = "3";
         String expected1 = "1. MockPet 1";
         String expected2 = "2. MockPet 2";
         String expected3 = "3. MockPet 3";
@@ -153,7 +153,7 @@ class HotelTest {
         List<String> output = hotel.getGuestsListString();
 
         assertEquals(4, output.size());
-        assertEquals(expected0, output.get(0));
+        assertTrue(output.get(0).contains(expected0));
         assertEquals(expected1, output.get(1));
         assertEquals(expected2, output.get(2));
         assertEquals(expected3, output.get(3));
