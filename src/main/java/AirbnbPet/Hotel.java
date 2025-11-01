@@ -1,6 +1,7 @@
 package AirbnbPet;
 
 import AirbnbPet.Pets.Pet;
+import AirbnbPet.Pets.Rabbit;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -56,11 +57,49 @@ public class Hotel {
         guests.put(guest.getId(), guest);
     }
 
+    private void checkOutGuest(Pet guest) {
+        guests.remove(guest.getId(), guest);
+    }
+
+    private List<Pet> getGuestsByType(String petType) {
+        List<Pet> res = new ArrayList<>();
+        for (Pet pet : guests.values()) {
+            String currentPetType = pet.getClass().getSimpleName();
+            if (currentPetType.equals(petType))
+                res.add(pet);
+        }
+        return res;
+    }
+
+    private void checkOutRabbitGuest(Rabbit guest) {
+        checkOutGuest(guest);
+        guest.setHasNeighbors(false);
+
+        List<Pet> rabbits = getGuestsByType("Rabbit");
+        if (rabbits.size() == 1) {
+            ((Rabbit) rabbits.getFirst()).setHasNeighbors(false);
+        }
+    }
+
+    private void checkInRabbitGuest(Rabbit guest) {
+        List<Pet> rabbits = getGuestsByType("Rabbit");
+        if (rabbits.isEmpty())
+            return;
+        else if (rabbits.size() == 1)
+            ((Rabbit) rabbits.getFirst()).setHasNeighbors(true);
+
+        guest.setHasNeighbors(true);
+    }
+
     public boolean registerPet(Pet incomingGuest) {
         List<String> validationResults = validateVisitor(incomingGuest);
         if (!validationResults.isEmpty()) {
             showErrorMessages(validationResults);
             return false;
+        }
+
+        if (incomingGuest instanceof Rabbit) {
+            checkInRabbitGuest((Rabbit) incomingGuest);
         }
 
         checkInGuest(incomingGuest);
@@ -71,8 +110,15 @@ public class Hotel {
         if (!isPetRegister(departingGuest)) {
             return false;
         }
+        if (departingGuest instanceof Rabbit) {
+            // TODO: If more Pets are neighbor-dependant, abstract this
+            //  functionality into an interface, so more Pet subclasses could
+            //  use the same logic.
+            checkOutRabbitGuest((Rabbit) departingGuest);
+        } else {
+            checkOutGuest(departingGuest);
+        }
 
-        guests.remove(departingGuest.getId(), departingGuest);
         return true;
     }
 
