@@ -1,9 +1,11 @@
 package AirbnbPet;
 
+import AirbnbPet.Pets.Cat;
 import AirbnbPet.Pets.Dog;
+import AirbnbPet.Pets.Rabbit;
 import org.junit.jupiter.api.Test;
 
-import static AirbnbPet.Mocks.newMockDog;
+import static AirbnbPet.Mocks.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class HotelTest {
@@ -50,13 +52,101 @@ class HotelTest {
     }
 
     @Test
-    public void shouldCalculateDogFee() {
-        Dog casePet = newMockDog();
-        for (int i = 0; i < 3; i++)
-            casePet.registerNewExerciseSession();
-        int expectedFee = 26_750;
+    public void shouldCalculateDogWithExerciseFee() {
+        int expectedFeeOneDay = 25_000;
+        int expectedFeeTwoDays = 51_750;
+        int expectedFeeFiveDays = 143_768;
 
-        int outputFee = casePet.calculateValue(1);
-        assertEquals(expectedFee, outputFee);
+        Dog casePet = newMockDog();
+        casePet.setDailyExerciseSessions(3);
+        int outputFeeOneDay = casePet.calculateValue(1);
+        int outputFeeTwoDays = casePet.calculateValue(2);
+        int outputFeeFiveDays = casePet.calculateValue(5);
+
+        assertEquals(expectedFeeOneDay, outputFeeOneDay);
+        assertEquals(expectedFeeTwoDays, outputFeeTwoDays);
+        assertEquals(expectedFeeFiveDays, outputFeeFiveDays);
+    }
+
+    @Test
+    public void shouldCalculateDogWithoutExerciseFee() {
+        int expectedFeeOneDay = 25_000;
+        int expectedFeeTwoDays = 50_000;
+        int expectedFeeFiveDays = 125_000;
+
+        Dog casePet = newMockDog();
+        int outputFeeOneDay = casePet.calculateValue(1);
+        int outputFeeTwoDays = casePet.calculateValue(2);
+        int outputFeeFiveDays = casePet.calculateValue(5);
+
+        assertEquals(expectedFeeOneDay, outputFeeOneDay);
+        assertEquals(expectedFeeTwoDays, outputFeeTwoDays);
+        assertEquals(expectedFeeFiveDays, outputFeeFiveDays);
+    }
+
+    @Test
+    public void shouldCalculateCatFee() {
+        int expectedFeeOneDay = 25_000;
+        int expectedFeeTwoDays = 51_250;
+        int expectedFeeFiveDays = 138_141;
+
+        Cat casePet = newMockCat();
+        int outputFeeOneDay = casePet.calculateValue(1);
+        int outputFeeTwoDays = casePet.calculateValue(2);
+        int outputFeeFiveDays = casePet.calculateValue(5);
+
+        assertEquals(expectedFeeOneDay, outputFeeOneDay);
+        assertEquals(expectedFeeTwoDays, outputFeeTwoDays);
+        assertEquals(expectedFeeFiveDays, outputFeeFiveDays);
+    }
+
+    @Test
+    public void shouldCalculateSingleRabbitFee() {
+        Rabbit caseRabbit = newMockRabbit();
+        int expectedFeeOneDay = 25_000;
+        int expectedFeeTwoDays = 50_000;
+        int expectedFeeFiveDays = 125_000;
+
+        Hotel hotel = new Hotel();
+        hotel.registerPet(caseRabbit);
+        int outputFeeOneDay = caseRabbit.calculateValue(1);
+        int outputFeeTwoDays = caseRabbit.calculateValue(2);
+        int outputFeeFiveDays = caseRabbit.calculateValue(5);
+
+        assertEquals(expectedFeeOneDay, outputFeeOneDay);
+        assertEquals(expectedFeeTwoDays, outputFeeTwoDays);
+        assertEquals(expectedFeeFiveDays, outputFeeFiveDays);
+    }
+
+    @Test
+    public void shouldCalculateMultipleRabbitsFee() {
+        Rabbit caseRabbit = newMockRabbit();
+        int expectedFeeOneDay = 25_000;
+        int expectedFeeTwoDays = 48_250;
+        int expectedFeeFiveDays = 108_683;
+
+        Hotel hotel = new Hotel();
+        hotel.registerPet(caseRabbit);
+        hotel.registerPet(newMockRabbit());
+        int outputFeeOneDay = caseRabbit.calculateValue(1);
+        int outputFeeTwoDays = caseRabbit.calculateValue(2);
+        int outputFeeFiveDays = caseRabbit.calculateValue(5);
+
+        assertEquals(expectedFeeOneDay, outputFeeOneDay);
+        assertEquals(expectedFeeTwoDays, outputFeeTwoDays);
+        assertEquals(expectedFeeFiveDays, outputFeeFiveDays);
+    }
+
+    @Test
+    public void rabbitFeeShouldNotBeFree() {
+        int caseDays = 200; // zero at >150
+        Rabbit caseRabbit = newMockRabbit();
+
+        Hotel hotel = new Hotel();
+        newMockRabbit();
+        hotel.registerPet(caseRabbit);
+        int output = caseRabbit.calculateValue(caseDays);
+
+        assertTrue(output > 0);
     }
 }
