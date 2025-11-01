@@ -2,8 +2,11 @@ package AirbnbPet;
 
 import AirbnbPet.Pets.Cat;
 import AirbnbPet.Pets.Dog;
+import AirbnbPet.Pets.Pet;
 import AirbnbPet.Pets.Rabbit;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static AirbnbPet.Mocks.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -128,5 +131,27 @@ class HotelTest {
         assertFalse(rabbit1.hasNeighbors());
         assertFalse(rabbit2.hasNeighbors());
         assertFalse(rabbit3.hasNeighbors());
+    }
+
+    @Test
+    public void shouldBuildAListWithAllGuestsNamesAndTotal() {
+        Pet pet1 = newMockDog();
+        Pet pet2 = newMockCat();
+        Pet pet3 = newMockRabbit();
+        String expected0 = "Total guests: 3";
+        String expected1 = "1. Mock Dog 1";
+        String expected2 = "2. Mock Cat 1";
+        String expected3 = "3. Mock Rabbit 1";
+
+        Hotel hotel = new Hotel();
+        hotel.registerPet(pet1);
+        hotel.registerPet(pet2);
+        hotel.registerPet(pet3);
+        List<String> output = hotel.getGuestsList();
+
+        assertEquals(4, output.size());
+        assertEquals(expected0, output.get(0));
+        assertEquals(expected1, output.get(1));
+        assertEquals(expected2, output.get(2));
     }
 }
