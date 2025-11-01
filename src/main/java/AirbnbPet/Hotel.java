@@ -9,7 +9,15 @@ import java.util.List;
 import java.util.Map;
 
 public class Hotel {
-    private Map<String, Pet> guests = new HashMap<>();
+    private final Map<String, Pet> guests;
+
+    public Hotel() {
+        guests = new HashMap<>();
+    }
+
+    public Hotel(Map<String, Pet> guests) {
+        this.guests = guests;
+    }
 
     private List<String> validateVisitor(Pet visitor) {
         List<String> output = new ArrayList<>();
