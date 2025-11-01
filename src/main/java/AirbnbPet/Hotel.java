@@ -19,6 +19,10 @@ public class Hotel {
         this.guests = guests;
     }
 
+    public Map<String, Pet> getGuests() {
+        return guests;
+    }
+
     private List<String> validateVisitor(Pet visitor) {
         List<String> output = new ArrayList<>();
 
@@ -134,9 +138,9 @@ public class Hotel {
         return guests.size();
     }
 
-    public List<String> getGuestsList() {
+    public List<String> getGuestsListString() {
         List<String> res = new ArrayList<>();
-        res.add("Total guests: " + guests.size());
+        res.add("Total guests: " + getGuestsCount());
         int counter = 0;
         for (Pet guest : guests.values()) {
             res.add((++counter) + ". " + guest.getName());

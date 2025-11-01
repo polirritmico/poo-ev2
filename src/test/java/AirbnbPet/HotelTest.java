@@ -150,7 +150,7 @@ class HotelTest {
         hotel.registerPet(pet1);
         hotel.registerPet(pet2);
         hotel.registerPet(pet3);
-        List<String> output = hotel.getGuestsList();
+        List<String> output = hotel.getGuestsListString();
 
         assertEquals(4, output.size());
         assertEquals(expected0, output.get(0));
