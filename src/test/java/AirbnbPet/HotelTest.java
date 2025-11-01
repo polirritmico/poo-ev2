@@ -1,11 +1,11 @@
 package AirbnbPet;
 
+import AirbnbPet.Pets.Cat;
 import AirbnbPet.Pets.Dog;
 import AirbnbPet.Pets.Rabbit;
 import org.junit.jupiter.api.Test;
 
-import static AirbnbPet.Mocks.newMockDog;
-import static AirbnbPet.Mocks.newMockRabbit;
+import static AirbnbPet.Mocks.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class HotelTest {
@@ -52,52 +52,42 @@ class HotelTest {
     }
 
     @Test
-    public void shouldCalculateSingleRabbitFee() {
-        Rabbit caseRabbit = newMockRabbit();
-        int expectedFeeOneDay = 25_000;
-        int expectedFeeTwoDays = 50_000;
-        int expectedFeeFiveDays = 125_000;
+    public void rabbitNeighborsStateShouldRepresentCurrentHotelGuestsState() {
+        Rabbit rabbit1 = newMockRabbit();
+        Rabbit rabbit2 = newMockRabbit();
+        Rabbit rabbit3 = newMockRabbit();
+        Cat cat = newMockCat();
 
         Hotel hotel = new Hotel();
-        hotel.registerPet(caseRabbit);
-        int outputFeeOneDay = caseRabbit.calculateValue(1);
-        int outputFeeTwoDays = caseRabbit.calculateValue(2);
-        int outputFeeFiveDays = caseRabbit.calculateValue(5);
+        hotel.registerPet(rabbit1);
+        hotel.registerPet(cat);
+        assertFalse(rabbit1.hasNeighbors());
+        assertFalse(rabbit2.hasNeighbors());
+        assertFalse(rabbit3.hasNeighbors());
 
-        assertEquals(expectedFeeOneDay, outputFeeOneDay);
-        assertEquals(expectedFeeTwoDays, outputFeeTwoDays);
-        assertEquals(expectedFeeFiveDays, outputFeeFiveDays);
-    }
+        hotel.registerPet(rabbit2);
+        assertTrue(rabbit1.hasNeighbors());
+        assertTrue(rabbit2.hasNeighbors());
+        assertFalse(rabbit3.hasNeighbors());
 
-    @Test
-    public void shouldCalculateMultipleRabbitsFee() {
-        Rabbit caseRabbit = newMockRabbit();
-        int expectedFeeOneDay = 25_000;
-        int expectedFeeTwoDays = 48_250;
-        int expectedFeeFiveDays = 108_683;
+        hotel.registerPet(rabbit3);
+        assertTrue(rabbit1.hasNeighbors());
+        assertTrue(rabbit2.hasNeighbors());
+        assertTrue(rabbit3.hasNeighbors());
 
-        Hotel hotel = new Hotel();
-        hotel.registerPet(caseRabbit);
-        hotel.registerPet(newMockRabbit());
-        int outputFeeOneDay = caseRabbit.calculateValue(1);
-        int outputFeeTwoDays = caseRabbit.calculateValue(2);
-        int outputFeeFiveDays = caseRabbit.calculateValue(5);
+        hotel.unregisterPet(cat);
+        assertTrue(rabbit1.hasNeighbors());
+        assertTrue(rabbit2.hasNeighbors());
+        assertTrue(rabbit3.hasNeighbors());
 
-        assertEquals(expectedFeeOneDay, outputFeeOneDay);
-        assertEquals(expectedFeeTwoDays, outputFeeTwoDays);
-        assertEquals(expectedFeeFiveDays, outputFeeFiveDays);
-    }
+        hotel.unregisterPet(rabbit1);
+        assertFalse(rabbit1.hasNeighbors());
+        assertTrue(rabbit2.hasNeighbors());
+        assertTrue(rabbit3.hasNeighbors());
 
-    @Test
-    public void multipleRabbitsFeeShouldNotBeFree() {
-        int caseDays = 200; // zero at >150
-        Rabbit caseRabbit = newMockRabbit();
-
-        Hotel hotel = new Hotel();
-        newMockRabbit();
-        hotel.registerPet(caseRabbit);
-        int output = caseRabbit.calculateValue(caseDays);
-
-        assertTrue(output > 0);
+        hotel.unregisterPet(rabbit3);
+        assertFalse(rabbit1.hasNeighbors());
+        assertFalse(rabbit2.hasNeighbors());
+        assertFalse(rabbit3.hasNeighbors());
     }
 }
