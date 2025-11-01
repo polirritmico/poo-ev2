@@ -1,33 +1,32 @@
 package AirbnbPet;
 
-import org.junit.jupiter.api.Test;
 import AirbnbPet.Pets.Cat;
-
-import static AirbnbPet.helpers.substringInCollection;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static AirbnbPet.helpers.substringInCollection;
+import static org.junit.Assert.assertTrue;
 
 class CatTest {
     @Test
     void shouldGenerateAllMeaningfulPetData() {
         Cat casePet = new Cat(
-            "mockrabbit-42",
-            "Mock The Rabbit",
-            0.4,
-            1,
+            "mocat-987",
+            "MockedCat",
+            4.2,
             2,
+            6,
             false,
-            "Carrots"
+            "Siamese"
         );
-        String expectedId = "mockrabbit-42";
-        String expectedName = "mock the rabbit";
-        String expectedWeight = "0.4 kg";
-        String expectedYears = "1 years";
-        String expectedMonths = "2 months";
-        String expectedFoodType = "carrots";
+        String expectedId = "mocat-987";
+        String expectedName = "MockedCat";
+        String expectedWeight = "4.2 kg";
+        String expectedYears = "2 years";
+        String expectedMonths = "6 months";
         String expectedSupervision = "requires night supervision";
+        String expectedPedigree = "Siamese";
 
         List<String> output = casePet.getData();
         assertTrue(substringInCollection(expectedId, output));
@@ -35,7 +34,7 @@ class CatTest {
         assertTrue(substringInCollection(expectedWeight, output));
         assertTrue(substringInCollection(expectedYears, output));
         assertTrue(substringInCollection(expectedMonths, output));
-        assertTrue(substringInCollection(expectedFoodType, output));
         assertTrue(substringInCollection(expectedSupervision, output));
+        assertTrue(substringInCollection(expectedPedigree, output));
     }
 }
