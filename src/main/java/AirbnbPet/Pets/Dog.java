@@ -15,6 +15,12 @@ public class Dog extends Pet {
         this.dailyExerciseSessions = dailyExerciseSessions;
     }
 
+    public int getDailyExerciseSessions() {return dailyExerciseSessions;}
+
+    public void setDailyExerciseSessions(int dailyExerciseSessions) {
+        this.dailyExerciseSessions = dailyExerciseSessions;
+    }
+
     private void resetExerciseRegistry(LocalDate today) {
         lastExerciseDate = today;
         dailyExerciseSessions = 0;
@@ -40,8 +46,6 @@ public class Dog extends Pet {
         return dailyExerciseSessions;
     }
 
-    public int getDailyExerciseSessions() {return dailyExerciseSessions;}
-
     @Override
     public List<String> getData() {
         List<String> res = new ArrayList<>();
@@ -57,8 +61,11 @@ public class Dog extends Pet {
 
     @Override
     public int calculateValue(int days) {
-        double percentage = percentageIncreaseFeesByPetType.get("Dog") / 100.0;
-        double fee = VALOR_DIA_ALOJAMIENTO * Math.pow(1 + percentage, days);
-        return (int) fee;
+        if (getDailyExerciseSessions() < 3)
+            return VALOR_DIA_ALOJAMIENTO * days;
+
+        double rate = 1 + percentageIncreaseFeesByPetType.get("Dog") / 100.0;
+        double fee = VALOR_DIA_ALOJAMIENTO * (Math.pow(rate, days) - 1) / (rate - 1);
+        return (int) Math.round(fee);
     }
 }
