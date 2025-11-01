@@ -37,6 +37,8 @@ public class Cat extends Pet {
 
     @Override
     public int calculateValue(int days) {
-        return 0;
+        double rate = 1 + percentageIncreaseFeesByPetType.get("Cat") / 100.0;
+        double fee = VALOR_DIA_ALOJAMIENTO * (Math.pow(rate, days) - 1) / (rate - 1);
+        return (int) Math.round(fee);
     }
 }
