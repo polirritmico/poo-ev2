@@ -20,7 +20,7 @@ public class Rabbit extends Pet {
 
     public void setFoodType(String foodType) {this.foodType = foodType;}
 
-    public boolean isHasNeighbors() {return hasNeighbors;}
+    public boolean hasNeighbors() {return hasNeighbors;}
 
     public void setHasNeighbors(boolean hasNeighbors) {this.hasNeighbors = hasNeighbors;}
 
