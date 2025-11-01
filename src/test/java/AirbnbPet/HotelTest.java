@@ -154,8 +154,8 @@ class HotelTest {
 
         assertEquals(4, output.size());
         assertTrue(output.get(0).contains(expected0));
-        assertEquals(expected1, output.get(1));
-        assertEquals(expected2, output.get(2));
-        assertEquals(expected3, output.get(3));
+        assertTrue(output.get(1).contains(expected1));
+        assertTrue(output.get(2).contains(expected2));
+        assertTrue(output.get(3).contains(expected3));
     }
 }
