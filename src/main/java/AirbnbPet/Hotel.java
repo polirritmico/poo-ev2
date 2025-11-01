@@ -133,4 +133,14 @@ public class Hotel {
     public int getGuestsCount() {
         return guests.size();
     }
+
+    public List<String> getGuestsList() {
+        List<String> res = new ArrayList<>();
+        res.add("Total guests: " + guests.size());
+        int counter = 0;
+        for (Pet guest : guests.values()) {
+            res.add((++counter) + ". " + guest.getName());
+        }
+        return res;
+    }
 }
