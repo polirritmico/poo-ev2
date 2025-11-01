@@ -5,8 +5,10 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static AirbnbPet.Mocks.newMockCat;
 import static AirbnbPet.helpers.substringInCollection;
 import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CatTest {
     @Test
@@ -36,5 +38,21 @@ class CatTest {
         assertTrue(substringInCollection(expectedMonths, output));
         assertTrue(substringInCollection(expectedSupervision, output));
         assertTrue(substringInCollection(expectedPedigree, output));
+    }
+
+    @Test
+    public void shouldCalculateCatFee() {
+        int expectedFeeOneDay = 25_000;
+        int expectedFeeTwoDays = 51_250;
+        int expectedFeeFiveDays = 138_141;
+
+        Cat casePet = newMockCat();
+        int outputFeeOneDay = casePet.calculateValue(1);
+        int outputFeeTwoDays = casePet.calculateValue(2);
+        int outputFeeFiveDays = casePet.calculateValue(5);
+
+        assertEquals(expectedFeeOneDay, outputFeeOneDay);
+        assertEquals(expectedFeeTwoDays, outputFeeTwoDays);
+        assertEquals(expectedFeeFiveDays, outputFeeFiveDays);
     }
 }

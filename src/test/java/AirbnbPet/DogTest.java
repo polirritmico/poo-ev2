@@ -89,4 +89,36 @@ class DogTest {
         assertTrue(substringInCollection(expectedSupervision, output));
     }
 
+    @Test
+    public void shouldCalculateDogWithExerciseFee() {
+        int expectedFeeOneDay = 25_000;
+        int expectedFeeTwoDays = 51_750;
+        int expectedFeeFiveDays = 143_768;
+
+        Dog casePet = newMockDog();
+        casePet.setDailyExerciseSessions(3);
+        int outputFeeOneDay = casePet.calculateValue(1);
+        int outputFeeTwoDays = casePet.calculateValue(2);
+        int outputFeeFiveDays = casePet.calculateValue(5);
+
+        assertEquals(expectedFeeOneDay, outputFeeOneDay);
+        assertEquals(expectedFeeTwoDays, outputFeeTwoDays);
+        assertEquals(expectedFeeFiveDays, outputFeeFiveDays);
+    }
+
+    @Test
+    public void shouldCalculateDogWithoutExerciseFee() {
+        int expectedFeeOneDay = 25_000;
+        int expectedFeeTwoDays = 50_000;
+        int expectedFeeFiveDays = 125_000;
+
+        Dog casePet = newMockDog();
+        int outputFeeOneDay = casePet.calculateValue(1);
+        int outputFeeTwoDays = casePet.calculateValue(2);
+        int outputFeeFiveDays = casePet.calculateValue(5);
+
+        assertEquals(expectedFeeOneDay, outputFeeOneDay);
+        assertEquals(expectedFeeTwoDays, outputFeeTwoDays);
+        assertEquals(expectedFeeFiveDays, outputFeeFiveDays);
+    }
 }

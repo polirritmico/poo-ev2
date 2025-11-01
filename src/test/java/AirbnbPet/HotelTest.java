@@ -1,11 +1,11 @@
 package AirbnbPet;
 
-import AirbnbPet.Pets.Cat;
 import AirbnbPet.Pets.Dog;
 import AirbnbPet.Pets.Rabbit;
 import org.junit.jupiter.api.Test;
 
-import static AirbnbPet.Mocks.*;
+import static AirbnbPet.Mocks.newMockDog;
+import static AirbnbPet.Mocks.newMockRabbit;
 import static org.junit.jupiter.api.Assertions.*;
 
 class HotelTest {
@@ -49,55 +49,6 @@ class HotelTest {
 
         assertEquals(caseFirstPet.getId(), casePetWithDuplicatedId.getId());
         assertFalse(hotel.registerPet(casePetWithDuplicatedId));
-    }
-
-    @Test
-    public void shouldCalculateDogWithExerciseFee() {
-        int expectedFeeOneDay = 25_000;
-        int expectedFeeTwoDays = 51_750;
-        int expectedFeeFiveDays = 143_768;
-
-        Dog casePet = newMockDog();
-        casePet.setDailyExerciseSessions(3);
-        int outputFeeOneDay = casePet.calculateValue(1);
-        int outputFeeTwoDays = casePet.calculateValue(2);
-        int outputFeeFiveDays = casePet.calculateValue(5);
-
-        assertEquals(expectedFeeOneDay, outputFeeOneDay);
-        assertEquals(expectedFeeTwoDays, outputFeeTwoDays);
-        assertEquals(expectedFeeFiveDays, outputFeeFiveDays);
-    }
-
-    @Test
-    public void shouldCalculateDogWithoutExerciseFee() {
-        int expectedFeeOneDay = 25_000;
-        int expectedFeeTwoDays = 50_000;
-        int expectedFeeFiveDays = 125_000;
-
-        Dog casePet = newMockDog();
-        int outputFeeOneDay = casePet.calculateValue(1);
-        int outputFeeTwoDays = casePet.calculateValue(2);
-        int outputFeeFiveDays = casePet.calculateValue(5);
-
-        assertEquals(expectedFeeOneDay, outputFeeOneDay);
-        assertEquals(expectedFeeTwoDays, outputFeeTwoDays);
-        assertEquals(expectedFeeFiveDays, outputFeeFiveDays);
-    }
-
-    @Test
-    public void shouldCalculateCatFee() {
-        int expectedFeeOneDay = 25_000;
-        int expectedFeeTwoDays = 51_250;
-        int expectedFeeFiveDays = 138_141;
-
-        Cat casePet = newMockCat();
-        int outputFeeOneDay = casePet.calculateValue(1);
-        int outputFeeTwoDays = casePet.calculateValue(2);
-        int outputFeeFiveDays = casePet.calculateValue(5);
-
-        assertEquals(expectedFeeOneDay, outputFeeOneDay);
-        assertEquals(expectedFeeTwoDays, outputFeeTwoDays);
-        assertEquals(expectedFeeFiveDays, outputFeeFiveDays);
     }
 
     @Test
