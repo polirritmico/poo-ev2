@@ -10,7 +10,7 @@ import java.util.Map;
 public class Hotel {
     private Map<String, Pet> guests = new HashMap<>();
 
-    private List<String> validate(Pet visitor) {
+    private List<String> validateVisitor(Pet visitor) {
         List<String> output = new ArrayList<>();
 
         if (!hasValidId(visitor)) {
@@ -57,7 +57,7 @@ public class Hotel {
     }
 
     public boolean registerPet(Pet incomingGuest) {
-        List<String> validationResults = validate(incomingGuest);
+        List<String> validationResults = validateVisitor(incomingGuest);
         if (!validationResults.isEmpty()) {
             showErrorMessages(validationResults);
             return false;
@@ -68,6 +68,15 @@ public class Hotel {
     }
 
     public boolean unregisterPet(Pet departingGuest) {
-        return false;
+        if (!isPetRegister(departingGuest)) {
+            return false;
+        }
+
+        guests.remove(departingGuest.getId(), departingGuest);
+        return true;
+    }
+
+    public int getGuestsCount() {
+        return guests.size();
     }
 }
