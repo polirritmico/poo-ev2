@@ -39,6 +39,12 @@ public class Rabbit extends Pet {
 
     @Override
     public int calculateValue(int days) {
-        return 0;
+        if (!hasNeighbors()) {
+            return VALOR_DIA_ALOJAMIENTO * days;
+        }
+
+        double rate = 1 + percentageIncreaseFeesByPetType.get("Rabbit") / 100.0;
+        double fee = VALOR_DIA_ALOJAMIENTO * (Math.pow(rate, days) - 1) / (rate - 1);
+        return Math.max((int) Math.round(fee), 1);
     }
 }
