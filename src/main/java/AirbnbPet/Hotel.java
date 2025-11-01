@@ -66,4 +66,8 @@ public class Hotel {
         checkInGuest(incomingGuest);
         return true;
     }
+
+    public boolean unregisterPet(Pet departingGuest) {
+        return false;
+    }
 }
