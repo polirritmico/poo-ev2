@@ -138,10 +138,13 @@ class HotelTest {
         Pet pet1 = newMockDog();
         Pet pet2 = newMockCat();
         Pet pet3 = newMockRabbit();
+        pet1.setName("MockPet 1");
+        pet2.setName("MockPet 2");
+        pet3.setName("MockPet 3");
         String expected0 = "Total guests: 3";
-        String expected1 = "1. Mock Dog 1";
-        String expected2 = "2. Mock Cat 1";
-        String expected3 = "3. Mock Rabbit 1";
+        String expected1 = "1. MockPet 1";
+        String expected2 = "2. MockPet 2";
+        String expected3 = "3. MockPet 3";
 
         Hotel hotel = new Hotel();
         hotel.registerPet(pet1);
@@ -153,5 +156,6 @@ class HotelTest {
         assertEquals(expected0, output.get(0));
         assertEquals(expected1, output.get(1));
         assertEquals(expected2, output.get(2));
+        assertEquals(expected3, output.get(3));
     }
 }
